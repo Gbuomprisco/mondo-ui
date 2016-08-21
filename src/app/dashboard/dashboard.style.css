@@ -12,3 +12,14 @@
 .widget__content {
     padding: 0.5em 0.8em;
 }
+
+.widget__tile {
+    padding: 0.5em 0em;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+
+.widget__tile--clickable:hover {
+    background: #f9f9f9;
+    cursor: pointer;
+}

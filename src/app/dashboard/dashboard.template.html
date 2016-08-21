@@ -11,8 +11,27 @@
 
             <div class='widget__content'>
                 <transactions #transactions>
+                    <div class="row">
+                        <span class="col-md-5">
+                            <span class="text-small text-secondary text-uppercase">
+                                Place
+                            </span>
+                        </span>
+
+                        <span class="col-md-4">
+                            <span class="text-small text-secondary text-uppercase">
+                                Date
+                            </span>
+                        </span>
+
+                        <span class="col-md-3 transaction__amount">
+                            <span class="text-small text-secondary text-uppercase">
+                                Amount
+                            </span>
+                        </span>
+                    </div>
                     <div *ngFor='let transaction of transactions.transactions'
-                         class="row text-thin"
+                         class="row text-thin widget__tile widget__tile--clickable"
                          routerLink='/transactions/{{ transaction.id }}'
                          [class.transaction--is-load]='transaction.is_load'>
 
@@ -20,7 +39,7 @@
                              <span>{{ transaction.description }}</span>
                          </span>
 
-                         <span class="col-md-3">
+                         <span class="col-md-4">
                              {{ transaction.created | date : 'longDate'}}
                          </span>
 

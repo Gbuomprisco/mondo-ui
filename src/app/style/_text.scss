@@ -33,17 +33,21 @@
 
 /* COLORS */
 .text-primary {
-    color: $blue-500;
+    color: material-color('blue', '500');
 }
 
 .text-red {
-    color: $red-500;
+    color: material-color('red', '500');
 }
 
 .text-green {
-    color: $green-500;
+    color: material-color('green', '500');
 }
 
 .text-white {
     color: #fff;
+}
+
+.text-secondary {
+    color: material-color('grey', '500');
 }

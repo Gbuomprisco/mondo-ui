@@ -16,7 +16,7 @@ export class TransactionPage {
     ngOnInit() {
         this.route.params.subscribe(params => {
             this.provider.
-                getTransactionById(+params.id).
+                getTransactionById(params.id).
                 subscribe(transaction => {
                     this.transaction = transaction;
                 });
