@@ -1,0 +1,49 @@
+/* FONT VARIANTS */
+
+.text-thin {
+    font-weight: 300;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.text-medium {
+    font-weight: 500;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+
+/* SIZES */
+.text-small {
+    font-size: 0.8em;
+}
+
+.text-big {
+    font-size: 1.2em;
+}
+
+.text-bottom {
+    vertical-align: bottom;
+}
+
+
+/* COLORS */
+.text-primary {
+    color: $blue-500;
+}
+
+.text-red {
+    color: $red-500;
+}
+
+.text-green {
+    color: $green-500;
+}
+
+.text-white {
+    color: #fff;
+}

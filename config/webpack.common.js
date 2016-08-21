@@ -14,13 +14,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
 
+const precss       = require('precss');
+const autoprefixer = require('autoprefixer');
+
 /*
  * Webpack Constants
  */
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @AngularClass',
+  title: 'Mondo UI',
   baseUrl: '/',
-  isDevServer: helpers.isWebpackDevServer()
+  isDevServer: helpers.isWebpackDevServer(),
+  API_BASE_URL: 'https://api.getmondo.co.uk/',
 };
 
 /*
@@ -119,9 +123,20 @@ module.exports = {
           helpers.root('node_modules/@ngrx'),
           helpers.root('node_modules/@angular2-material'),
         ]
+      },
+      {
+          test:   /\.scss$/,
+          loader: "style-loader!css-loader!sass-loader!postcss-loader"
       }
 
     ],
+
+    postcss: function () {
+        return {
+            defaults: [precss, autoprefixer],
+            cleaner:  [autoprefixer({ browsers: [] })]
+        };
+    },
 
     /*
      * An array of automatically applied loaders.
@@ -136,7 +151,7 @@ module.exports = {
       /*
        * Typescript loader support for .ts and Angular 2 async routes via .async.ts
        * Replace templateUrl and stylesUrl with require()
-       * 
+       *
        * See: https://github.com/s-panferov/awesome-typescript-loader
        * See: https://github.com/TheLarkInn/angular2-template-loader
        */
@@ -176,7 +191,7 @@ module.exports = {
         loader: 'raw-loader',
         exclude: [helpers.root('src/index.html')]
       },
-      
+
       /* File loader for supporting images, for example, in CSS files.
       */
       {

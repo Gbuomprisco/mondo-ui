@@ -1,0 +1,38 @@
+@import "../style/main";
+
+header {
+    height: 50px;
+}
+
+header .header-container {
+    position: fixed;
+    background-color: $blue-700;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    height: 50px;
+    line-height: 50px;
+    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.header-container span {
+    color: #fff;
+    margin-right: 1em;
+}
+
+.header-container a {
+    margin: 0 1em;
+    padding: 8px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #fff;
+    border: 2px solid $blue-700;
+    transition: all 0.3s;
+}
+
+.header-container a.active,
+.header-container a:not(.active):hover {
+    border: 2px solid $blue-500;
+    background: $blue-500;
+}

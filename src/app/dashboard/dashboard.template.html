@@ -1,0 +1,35 @@
+<app-header></app-header>
+
+<div class="row">
+    <div class="col-md-6 col-xs-12 col-sm-12">
+        <div class="widget">
+            <div class='widget__header'>
+                <span class="text-medium text-small text-uppercase">
+                    transactions
+                </span>
+            </div>
+
+            <div class='widget__content'>
+                <transactions #transactions>
+                    <div *ngFor='let transaction of transactions.transactions'
+                         class="row text-thin"
+                         routerLink='/transactions/{{ transaction.id }}'
+                         [class.transaction--is-load]='transaction.is_load'>
+
+                         <span class="col-md-5">
+                             <span>{{ transaction.description }}</span>
+                         </span>
+
+                         <span class="col-md-3">
+                             {{ transaction.created | date : 'longDate'}}
+                         </span>
+
+                         <span class="col-md-3 transaction__amount">
+                             {{ transaction.amount / 100 }} {{ transaction.currency }}
+                         </span>
+                    </div>
+                </transactions>
+            </div>
+        </div>
+    </div>
+</div>

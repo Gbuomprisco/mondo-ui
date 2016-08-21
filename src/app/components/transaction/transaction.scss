@@ -1,0 +1,22 @@
+@import "../style/variables";
+
+transaction {
+  display: block;
+}
+
+.transaction {
+    border-bottom: 1px solid $grey-200;
+    padding: 0.5em 0;
+}
+
+transaction:last-child .transaction {
+    border-bottom-color: transparent;
+}
+
+.transaction .transaction__amount {
+    color: $red-500;
+}
+
+.transaction--is-load .transaction__amount {
+    color: $green-500;
+}

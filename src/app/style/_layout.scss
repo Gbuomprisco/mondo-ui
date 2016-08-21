@@ -1,0 +1,12 @@
+.layout-padding {
+    padding: 0.5em 0.8em;
+}
+
+.layout-margin {
+    margin: 0.5em 0.8em;
+}
+
+.layout-content {
+    background: #fff;
+    @extend .layout-padding;
+}

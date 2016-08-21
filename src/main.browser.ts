@@ -8,6 +8,7 @@ import { bootstrap } from '@angular/platform-browser-dynamic';
 */
 import { PLATFORM_PROVIDERS } from './platform/browser';
 import { ENV_PROVIDERS, decorateComponentRef } from './platform/environment';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 
 /*
@@ -27,6 +28,10 @@ export function main(initialHmrState?: any): Promise<any> {
     ...PLATFORM_PROVIDERS,
     ...ENV_PROVIDERS,
     ...APP_PROVIDERS,
+    {
+        provide: LocationStrategy,
+        useClass: PathLocationStrategy
+    }
   ])
   .then(decorateComponentRef)
   .catch(err => console.error(err));

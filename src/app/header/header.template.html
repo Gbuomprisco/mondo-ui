@@ -1,0 +1,28 @@
+<header class="header">
+    <div class='header-container'>
+        <div class='container'>
+            <div class="row">
+                <div class="col-md-1">
+                    <span class='text-medium text-uppercase text-small'>
+                        Mondo UI
+                    </span>
+                </div>
+
+                <div class="col-md-4">
+                    <a md-button routerLink="/"
+                        class="text-small text-uppercase"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        Dashboard
+                    </a>
+
+                    <a routerLink="/transactions"
+                        class="text-small text-uppercase"
+                        routerLinkActive="active">
+                        Transactions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

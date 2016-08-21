@@ -1,0 +1,14 @@
+.widget {
+    border-radius: 3px;
+    border: 1px solid #eee;
+    background: #fff;
+    margin: 0.5em 0;
+}
+
+.widget__header {
+    padding: 0.5em 0.8em;
+}
+
+.widget__content {
+    padding: 0.5em 0.8em;
+}

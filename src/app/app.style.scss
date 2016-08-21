@@ -1,0 +1,9 @@
+@import "style/main";
+
+html, body {
+  font-family: 'Roboto', Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  color: $grey-800;
+  background-color: $grey-100;
+}
