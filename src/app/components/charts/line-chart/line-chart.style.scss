@@ -1,0 +1,30 @@
+.axis {
+    font: 11px inherit;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: none;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    fill: #fff;
+    font: 11px inherit;
+}
+
+.axis--x path {
+    display: none;
+}
+
+.line {
+    fill: none;
+    stroke: lighten(#162b48, 25%);
+    stroke-width: 2;
+}
+
+.area {
+    fill: lighten(#162b48, 10%);
+}

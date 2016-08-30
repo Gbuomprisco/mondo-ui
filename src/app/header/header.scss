@@ -6,33 +6,50 @@ header {
 
 header .header-container {
     position: fixed;
-    background-color: material-color('blue', '500');
+    background-color: $primary-color;
     top: 0;
     left: 0;
     width: 100%;
     margin: 0;
     height: 50px;
     line-height: 50px;
-    box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
 }
 
 .header-container span {
     color: #fff;
-    margin-right: 1em;
+    padding: 0 1em;
 }
 
 .header-container a {
     margin: 0 1em;
     padding: 8px 10px;
     text-decoration: none;
-    border-radius: 4px;
     color: #fff;
-    border: 2px solid material-color('blue', '500');
-    transition: all 0.3s;
+    transition: all 0.2s;
+    border-color: $primary-color;
 }
 
 .header-container a.active,
 .header-container a:not(.active):hover {
-    border: 2px solid material-color('blue', '400');
-    background: material-color('blue', '400');
+    border-bottom: 5px solid lighten($primary-color, 35%);
+    padding-bottom: 12px;
+}
+
+.profile {
+    background: lighten($primary-color, 80%);
+    width: 35px;
+    height: 35px;
+    margin: 0.5em;
+    border-radius: 100%;
+}
+
+.profile span {
+    padding: 6px;
+    color: $primary-color;
+    line-height: 2;
+    vertical-align: super;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 1px;
 }

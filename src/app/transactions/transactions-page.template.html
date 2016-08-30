@@ -1,22 +1,20 @@
-<div class="layout-content">
 <transactions #transactions>
     <div *ngFor='let transaction of transactions.transactions'
          class="transaction"
          [class.transaction--is-load]='transaction.is_load'>
 
-        <div class="row text-thin">
+        <div class="row">
             <span class="col-md-5">
-                <span>{{ transaction.description }}</span>
+                {{ transaction.description }}
             </span>
 
             <span class="col-md-3">
                 {{ transaction.created | date : 'longDate'}}
             </span>
 
-            <span class="col-md-3 transaction__amount">
+            <span class="col-md-3 transaction__amount text-bold">
                 {{ transaction.amount / 100 }} {{ transaction.currency }}
             </span>
         </div>
     </div>
 </transactions>
-</div>

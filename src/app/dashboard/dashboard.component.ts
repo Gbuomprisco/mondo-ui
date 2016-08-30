@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { AppState } from '../app.service';
 import { Transactions } from '../components/transactions';
+import { LineChart } from '../components/charts/line-chart';
 
 @Component({
   selector: 'dashboard',
   providers: [],
-  directives: [ Transactions ],
-  styleUrls: [ './dashboard.style.css' ],
+  directives: [ Transactions, LineChart ],
+  styles: [ require('./dashboard.style.scss').toString() ],
   templateUrl: './dashboard.template.html'
 })
-export class Dashboard {}
+export class Dashboard {
+
+}

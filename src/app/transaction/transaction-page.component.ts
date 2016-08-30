@@ -14,7 +14,7 @@ export class TransactionPage {
                 private route: ActivatedRoute) {}
 
     ngOnInit() {
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((params: any) => {
             this.provider.
                 getTransactionById(params.id).
                 subscribe(transaction => {

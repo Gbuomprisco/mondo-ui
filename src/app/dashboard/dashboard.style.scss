@@ -1,0 +1,45 @@
+.dashboard {
+    padding: 0.5em 0;
+}
+
+.widget {
+    background: darken(#162b48, 2%);
+    margin-bottom: 1em;
+}
+
+.widget.widget--small {
+    height: 25vh;
+}
+
+.widget.widget--medium {
+    height: 50vh;
+}
+
+.widget__header {
+    padding: 0.75em 1em;
+    height: 5%;
+}
+
+.widget__content {
+    padding: 0.25em 1em;
+    height: 90%;
+}
+
+.widget__tile {
+    padding: 0.5em 0;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: all 0.25s;
+}
+
+.widget__tile--clickable:hover {
+    background: lighten(#162b48, 5%);
+    cursor: pointer;
+}
+
+.widget__value {
+    font-size: 4em;
+    font-weight: 300;
+    position: relative;
+    top: 0.25em;
+}

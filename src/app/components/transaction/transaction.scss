@@ -4,11 +4,6 @@ transaction {
   display: block;
 }
 
-.transaction {
-    border-bottom: 1px solid $grey-200;
-    padding: 0.5em 0;
-}
-
 transaction:last-child .transaction {
     border-bottom-color: transparent;
 }
