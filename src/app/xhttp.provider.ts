@@ -1,8 +1,7 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { RequestOptions, Headers } from '@angular/http';
-
-const ACCESS_TOKEN = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwMDA5NFB2SU5ER3pUM2s2dHo4anAiLCJleHAiOjE0NzE4MTAzMjMsImlhdCI6MTQ3MTc4ODcyMywianRpIjoidG9rXzAwMDA5QlZNTFhlUWRFOVdtMGNZazUiLCJ1aSI6InVzZXJfMDAwMDk4WW85ekFmakVKVm1MUkxqRiIsInYiOiIyIn0.HE5iO1vtqDhgRw0Bc7XvmHWTYNg54RAi8Dcv-_TQN1U`;
+import { Observable } from 'rxjs';
 
 class Cache {
     public items = {};
@@ -12,20 +11,20 @@ class Cache {
     }
 
     public put(item: string, value: any) {
-        this.items[item] = value;
+        this.items[item] = Observable.of(value);
     }
 }
 
 @Injectable()
 export class xHttp {
-    private cache: Cache = new Cache();
+    public cache: Cache = new Cache();
 
     constructor(private http: Http) {
         this.http = http;
     }
 
     public get(url: string, params?) {
-        return this.request('get', url, params);
+        return this.cache.get(url) || this.request('get', url, params);
     }
 
     public post(url: string, params?) {
@@ -41,10 +40,11 @@ export class xHttp {
     }
 
     private request(method: string, url: string, params) {
-        let headers = new Headers({'Authorization': `Bearer ${ACCESS_TOKEN}`});
-        let options = new RequestOptions({
-            headers
-        });
+        let ACCESS_TOKEN = localStorage.getItem('access_token'),
+            headers = new Headers({'Authorization': `Bearer ${ACCESS_TOKEN}`}),
+            options = new RequestOptions({
+                headers
+            });
 
         if (method === 'get' && params) {
             options.search = params;
@@ -52,6 +52,8 @@ export class xHttp {
             options.body = params;
         }
 
-        return this.http[method](`${API_BASE_URL}${url}`, options).share();
+        return this.http[method](`${API_BASE_URL}${url}`, options).
+            share().
+            map(data => data.json());
     }
 }

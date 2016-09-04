@@ -4,23 +4,31 @@ import { Dashboard } from './dashboard';
 import { TransactionPage } from './transaction';
 import { TransactionsPage } from './transactions';
 import { Auth } from './auth';
+import { LoggedInGuard } from './auth/login-guard';
 
 export const routes: RouterConfig = [
     {
         path: '',
-        component: Dashboard
+        component: Dashboard,
+        canActivate: [ LoggedInGuard ]
     },
     {
         path: 'transactions',
-        component: TransactionsPage
+        component: TransactionsPage,
+        canActivate: [ LoggedInGuard ]
     },
     {
         path: 'transactions/:id',
-        component: TransactionPage
+        component: TransactionPage,
+        canActivate: [ LoggedInGuard ]
     },
     {
         path: 'auth',
-        component: Auth
+        component: Auth,
+    },
+    {
+        path: 'auth/oauth/callback',
+        component: Auth,
     }
 ];
 

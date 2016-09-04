@@ -16,17 +16,25 @@
 }
 
 .widget__header {
-    padding: 0.75em 1em;
-    height: 5%;
+    padding: 0em 1em;
+    height: 10%;
+    position: relative;
+    line-height: 2.5;
 }
 
 .widget__content {
-    padding: 0.25em 1em;
+    padding: 0 1em;
     height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.widget__tiles {
+    padding: 0.5em 0;
 }
 
 .widget__tile {
-    padding: 0.5em 0;
+    padding: 0.3em 0;
     border-radius: 3px;
     border: 1px solid transparent;
     transition: all 0.25s;
@@ -38,8 +46,15 @@
 }
 
 .widget__value {
-    font-size: 4em;
+    font-size: 4.5em;
     font-weight: 300;
     position: relative;
-    top: 0.25em;
+    top: 25%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+
+span.currency {
+    font-size: 0.4em;
 }

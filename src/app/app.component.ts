@@ -5,19 +5,18 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
 import { MdIconRegistry } from '@angular2-material/icon';
 import { Header } from './header';
+import { LoggedInGuard } from './auth/login-guard';
 
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   viewProviders: [ MdIconRegistry ],
-  directives: [ Header ],
   styles: [
     require('flexboxgrid/dist/flexboxgrid.min.css').toString(),
     require('./app.style.scss').toString()
   ],
   template: `
     <main class='container-fluid'>
-      <app-header></app-header>
       <router-outlet></router-outlet>
     </main>
   `

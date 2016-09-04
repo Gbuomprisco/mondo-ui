@@ -16,9 +16,9 @@ declare interface Data {
 }
 
 const margin = {
-    top: 0,
+    top: 10,
     right: 25,
-    bottom: 40,
+    bottom: 30,
     left: 25
 };
 
@@ -37,8 +37,10 @@ export class LineChart {
 
     constructor(private $element: ElementRef, private renderer: Renderer) {}
 
-    ngOnInit() {
-        this.createSvg(this.data);
+    ngOnChanges() {
+        if (this.data && !this.svg) {
+            this.createSvg(this.data);
+        }
 
         // render again on resize
         // this.renderer.listen(window, 'resize', this.update.bind(this));
@@ -50,7 +52,7 @@ export class LineChart {
         this.svg = d3.select(this.$element.nativeElement)
             .append('svg')
             .attr('width', width + margin.left + margin.right)
-            .attr('height', height + margin.top + margin.bottom)
+            .attr('height', height + margin.top + margin.bottom - 10)
             .append('g')
             .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
