@@ -36,20 +36,7 @@ header .header-container {
     padding-bottom: 12px;
 }
 
-.profile {
-    background: lighten($primary-color, 80%);
-    width: 35px;
-    height: 35px;
-    margin: 0.5em;
-    border-radius: 100%;
-}
-
-.profile span {
-    padding: 6px;
-    color: $primary-color;
-    line-height: 2;
-    vertical-align: super;
-    font-weight: 500;
-    cursor: pointer;
-    letter-spacing: 1px;
+.menu-container {
+    text-align: right;
+    padding: 0.5em 1em;
 }

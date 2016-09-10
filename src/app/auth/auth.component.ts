@@ -8,10 +8,10 @@ import { AccountsProvider } from '../common/providers/accounts.provider';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  selector: 'auth',
-  directives: [ MdButton ],
-  templateUrl: './auth.template.html',
-  styles: [`
+    selector: 'auth',
+    directives: [ MdButton ],
+    templateUrl: './auth.template.html',
+    styles: [ `
       :host {
           position: fixed;
           top: 35%;
@@ -21,7 +21,7 @@ import { Observable } from 'rxjs/Rx';
           display: flex;
           flex-direction: column;
       }
-  `]
+  ` ]
 })
 export class Auth {
     private stateToken: string = process.env.STATE_TOKEN;
@@ -33,25 +33,25 @@ export class Auth {
         loggingIn: false
     };
 
-    constructor(
-        private router: Router,
-        private http: Http,
-        private user: UserProvider,
-        private accounts: AccountsProvider,
-        private sanitizer: DomSanitizationService) {}
+    constructor(private router: Router,
+                private http: Http,
+                private user: UserProvider,
+                private accounts: AccountsProvider,
+                private sanitizer: DomSanitizationService) {
+    }
 
     public ngOnInit() {
         const stateToken = this.stateToken,
             isLoggedIn = this.user.isLoggedIn();
 
         if (isLoggedIn) {
-            this.router.navigate(['']);
+            this.router.navigate([ '' ]);
             return;
         }
 
         this.router.routerState.queryParams.subscribe(params => {
-            const code: string = params['code'],
-                  state: string = params['state'];
+            const code: string = params[ 'code' ],
+                state: string = params[ 'state' ];
 
             if (!code || (state !== stateToken)) {
                 return;
@@ -62,18 +62,19 @@ export class Auth {
             /* fetch access token */
             this.getAuthKey(code).subscribe((data: any) => {
                 this.storeAccessToken(data.access_token);
+                this.state.loggingIn = false;
 
-                /* fetch accounts */
-                this.accounts.getAccounts(() => {
-                    this.state.loggingIn = false;
-
-                    /* redirect to home page */
-                    this.router.navigate(['']);
-                });
+                /* redirect to home page */
+                this.router.navigate([ '' ]);
             });
         });
     }
 
+    /**
+     * @name getAuthKey
+     * @param code
+     * @returns {Observable<any>}
+     */
     public getAuthKey(code: string): Observable<any> {
         const url = 'https://api.monzo.com/oauth2/token';
         const headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
@@ -89,6 +90,7 @@ export class Auth {
             headers
         }).map(r => r.json());
     }
+
 
     public get link(): SafeUrl {
         const url: string = 'https://auth.getmondo.co.uk/?';

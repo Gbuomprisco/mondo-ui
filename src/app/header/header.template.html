@@ -24,9 +24,17 @@
                 </div>
 
                 <div class="col-md-1">
-                    <div class="profile">
-                       <span>GB</span>
-                    </div>
+                    <md-toolbar class="end-icon">
+                        <button md-icon-button [md-menu-trigger-for]="menu">
+                            <md-icon>menu</md-icon>
+                        </button>
+                    </md-toolbar>
+
+                    <md-menu x-position="before" #menu="mdMenu" class="before">
+                        <button md-menu-item>
+                            Logout
+                        </button>
+                    </md-menu>
                 </div>
             </div>
         </div>

@@ -3,24 +3,32 @@ import { RouterConfig } from '@angular/router';
 import { Dashboard } from './dashboard';
 import { TransactionPage } from './transaction';
 import { TransactionsPage } from './transactions';
-import { Auth } from './auth';
-import { LoggedInGuard } from './auth/login-guard';
+import { Auth, LoggedInGuard, AccountsResolver } from './auth';
 
 export const routes: RouterConfig = [
     {
         path: '',
         component: Dashboard,
-        canActivate: [ LoggedInGuard ]
+        canActivate: [ LoggedInGuard ],
+        resolve: {
+            accounts: AccountsResolver
+        }
     },
     {
         path: 'transactions',
         component: TransactionsPage,
-        canActivate: [ LoggedInGuard ]
+        canActivate: [ LoggedInGuard ],
+        resolve: {
+            accounts: AccountsResolver
+        }
     },
     {
         path: 'transactions/:id',
         component: TransactionPage,
-        canActivate: [ LoggedInGuard ]
+        canActivate: [ LoggedInGuard ],
+        resolve: {
+            accounts: AccountsResolver
+        }
     },
     {
         path: 'auth',

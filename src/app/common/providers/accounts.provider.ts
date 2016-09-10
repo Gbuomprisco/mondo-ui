@@ -1,5 +1,6 @@
 import { XHttp } from './xhttp.provider';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 declare interface Account {
     id: string;
@@ -11,27 +12,17 @@ declare interface Account {
 export class AccountsProvider {
     public accounts: Account[] = [];
 
-    constructor(private xHttp: XHttp) {}
+    constructor(public xHttp: XHttp) {}
 
-    public getAccounts(callback?): void {
+    public getAccounts(): Observable<any> {
         const cached = localStorage.getItem('accounts');
 
         if (cached) {
             this.accounts = JSON.parse(cached);
-            return;
+            return Observable.of(this.accounts);
         }
 
-        this.xHttp.get('accounts').subscribe(accounts => {
-            this.accounts = accounts.accounts;
-
-            this.xHttp.cache.put('accounts', accounts);
-
-            localStorage.setItem('accounts', JSON.stringify(accounts));
-
-            if (callback) {
-                callback();
-            }
-        }).unsubscribe();
+        return this.xHttp.get('accounts');
     }
 
     public get account(): Account {

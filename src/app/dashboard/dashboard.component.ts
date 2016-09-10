@@ -10,6 +10,5 @@ import { Header } from '../header';
   styles: [ require('./dashboard.style.scss').toString() ],
   templateUrl: './dashboard.template.html'
 })
-export class Dashboard {
+export class Dashboard {}
 
-}
