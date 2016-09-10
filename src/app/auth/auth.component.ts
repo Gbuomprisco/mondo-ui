@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { MdButton } from '@angular2-material/button';
 import { DomSanitizationService, SafeUrl } from '@angular/platform-browser';
 import { Http, Headers } from '@angular/http';
-import { UserService } from '../common/services/user.service';
+import { UserProvider } from '../common/providers/user.provider';
+import { AccountsProvider } from '../common/providers/accounts.provider';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'auth',
@@ -22,19 +24,24 @@ import { UserService } from '../common/services/user.service';
   `]
 })
 export class Auth {
-    private state_token: string = '123';
-    private client_id: string = 'oauthclient_00009BwxK4Q8lb6cgxq1i5';
-    private redirect_uri: string = 'https://wonzo.localtunnel.me/auth/oauth/callback';
-    private client_secret: string = 'zxIqqSTSFulme0wxkgXi3ZoCmRKSqX/i4Xry8xKYOc8jWrEKfTQ8q0ico8NtLkKV9nRXbAKbMxITErw9JC42';
+    private stateToken: string = process.env.STATE_TOKEN;
+    private clientId: string = process.env.CLIENT_ID;
+    private redirectUri: string = process.env.REDIRECT_URI;
+    private clientSecret: string = process.env.CLIENT_SECRET;
+
+    private state = {
+        loggingIn: false
+    };
 
     constructor(
         private router: Router,
         private http: Http,
-        private user: UserService,
+        private user: UserProvider,
+        private accounts: AccountsProvider,
         private sanitizer: DomSanitizationService) {}
 
-    private ngOnInit() {
-        const stateToken = this.state_token,
+    public ngOnInit() {
+        const stateToken = this.stateToken,
             isLoggedIn = this.user.isLoggedIn();
 
         if (isLoggedIn) {
@@ -42,7 +49,7 @@ export class Auth {
             return;
         }
 
-        const params = this.router.routerState.queryParams.subscribe(params => {
+        this.router.routerState.queryParams.subscribe(params => {
             const code: string = params['code'],
                   state: string = params['state'];
 
@@ -50,22 +57,32 @@ export class Auth {
                 return;
             }
 
-            this.getAuthKey(code).subscribe(data => {
-                this.storeData(data.access_token, data.account_id);
-                this.router.navigate(['']);
+            this.state.loggingIn = true;
+
+            /* fetch access token */
+            this.getAuthKey(code).subscribe((data: any) => {
+                this.storeAccessToken(data.access_token);
+
+                /* fetch accounts */
+                this.accounts.getAccounts(() => {
+                    this.state.loggingIn = false;
+
+                    /* redirect to home page */
+                    this.router.navigate(['']);
+                });
             });
         });
     }
 
-    public getAuthKey(code: string) {
+    public getAuthKey(code: string): Observable<any> {
         const url = 'https://api.monzo.com/oauth2/token';
         const headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
 
         const params =
             'grant_type=authorization_code' +
-            '&client_id=' + this.client_id +
-            '&client_secret=' + this.client_secret +
-            '&redirect_uri=' + this.redirect_uri +
+            '&client_id=' + this.clientId +
+            '&client_secret=' + this.clientSecret +
+            '&redirect_uri=' + this.redirectUri +
             '&code=' + code;
 
         return this.http.post(url, params, {
@@ -76,17 +93,18 @@ export class Auth {
     public get link(): SafeUrl {
         const url: string = 'https://auth.getmondo.co.uk/?';
 
-        return `
-            ${url}client_id=${this.client_id}&redirect_uri=${this.redirect_uri}&response_type=code&state=${this.state_token}
-        `;
+        return url +
+            'client_id=' + this.clientId +
+            '&redirect_uri=' + this.redirectUri +
+            '&response_type=code' +
+            '&state=' + this.stateToken;
     }
 
     public sanitize(url: string): SafeUrl {
         return this.sanitizer.bypassSecurityTrustUrl(url);
     }
 
-    private storeData(token: string, accountId: string) {
+    private storeAccessToken(token: string): void {
         localStorage.setItem('access_token', token);
-        localStorage.setItem('account_id', accountId);
     }
 }

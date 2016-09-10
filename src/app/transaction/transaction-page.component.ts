@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TransactionsProvider } from '../components/transactions/transactions.provider';
+import { TransactionsProvider } from '../common/components/transactions/transactions.provider';
 
 @Component({
   selector: 'transactions-page',

@@ -1,9 +1,11 @@
 /**
  * @author: @AngularClass
  */
+require('dotenv').load();
 
 const webpack = require('webpack');
 const helpers = require('./helpers');
+
 
 /*
  * Webpack Plugins
@@ -25,6 +27,10 @@ const METADATA = {
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer(),
   API_BASE_URL: 'https://api.getmondo.co.uk/',
+  STATE_TOKEN: process.env.STATE_TOKEN,
+  CLIENT_ID: process.env.CLIENT_ID,
+  CLIENT_SECRET: process.env.CLIENT_SECRET,
+  REDIRECT_URI: process.env.REDIRECT_URI,
 };
 
 /*

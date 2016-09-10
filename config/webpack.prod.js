@@ -130,6 +130,11 @@ module.exports = webpackMerge(commonConfig, {
         'ENV': JSON.stringify(METADATA.ENV),
         'NODE_ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
+        'API_BASE_URL': JSON.stringify(METADATA.API_BASE_URL),
+        'STATE_TOKEN': JSON.stringify(METADATA.STATE_TOKEN),
+        'CLIENT_ID': JSON.stringify(METADATA.CLIENT_ID),
+        'CLIENT_SECRET': JSON.stringify(METADATA.CLIENT_SECRET),
+        'REDIRECT_URI': JSON.stringify(METADATA.REDIRECT_URI),
       }
     }),
 

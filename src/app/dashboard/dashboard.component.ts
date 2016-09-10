@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Transactions } from '../components/transactions';
-import { LineChart } from '../components/charts/line-chart';
+import { Transactions } from '../common/components/transactions';
+import { LineChart } from '../common/components/charts/line-chart';
 import { Header } from '../header';
 
 @Component({

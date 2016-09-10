@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Transactions } from '../components/transactions';
+import { Transactions } from '../common/components/transactions';
 import { Header } from '../header';
 
 @Component({

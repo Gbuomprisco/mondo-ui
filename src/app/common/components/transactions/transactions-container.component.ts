@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {TransactionsProvider} from './transactions.provider';
-import {TransactionsHelper} from './transactions.helper';
+import { Component } from '@angular/core';
+import { TransactionsProvider } from './transactions.provider';
+import { TransactionsHelper } from './transactions.helper';
 
 @Component({
     selector: 'transactions',
@@ -19,14 +19,13 @@ export class Transactions {
 
     public spentWeek: number;
     public spentMonth: number;
-    public limit: number;
 
     constructor(
         private provider: TransactionsProvider,
         private helper: TransactionsHelper
     ) {}
 
-    private ngOnInit() {
+    public ngOnInit() {
          this.getTransactions().getBalance();
     }
 
