@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Http, Headers } from '@angular/http';
-import { UserProvider } from '../common/providers/user.provider';
+import { UserProvider } from '../../common/providers/user.provider';
 import { Observable } from 'rxjs/Rx';
 
 @Component({

@@ -1,4 +1,4 @@
-@import "../style/variables";
+@import "../../style/variables";
 
 transaction {
   display: block;
@@ -9,9 +9,9 @@ transaction:last-child .transaction {
 }
 
 .transaction .transaction__amount {
-    color: $red-500;
+    color: #e51c23;
 }
 
 .transaction--is-load .transaction__amount {
-    color: $green-500;
+    color: #259b24;
 }

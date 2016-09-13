@@ -4,8 +4,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
 import { MdIconRegistry } from '@angular2-material/icon';
-import { Header } from './header';
-import { LoggedInGuard } from './auth/login-guard';
 
 @Component({
   selector: 'app',

@@ -1,6 +1,3 @@
-import { Injectable } from '@angular/core';
-
-@Injectable()
 export class TransactionsHelper {
     public getAmountsByDate(transactions) {
         if (!transactions) {

@@ -1,11 +1,9 @@
-import { RouterConfig } from '@angular/router';
+import { Dashboard } from './pages/dashboard';
+import { TransactionPage } from './pages/transaction';
+import { TransactionsPage } from './pages/transactions';
+import { Auth, LoggedInGuard, AccountsResolver } from './pages/auth';
 
-import { Dashboard } from './dashboard';
-import { TransactionPage } from './transaction';
-import { TransactionsPage } from './transactions';
-import { Auth, LoggedInGuard, AccountsResolver } from './auth';
-
-export const routes: RouterConfig = [
+export const ROUTES = [
     {
         path: '',
         component: Dashboard,
@@ -46,10 +44,10 @@ export const routes: RouterConfig = [
 
 export const asyncRoutes: AsyncRoutes = {
   // we have to use the alternative syntax for es6-promise-loader to grab the routes
-  'Transactions': require('es6-promise-loader!./transactions'),
-  'Transaction': require('es6-promise-loader!./transaction'),
-  'Auth': require('es6-promise-loader!./auth'),
-  'Dashboard': require('es6-promise-loader!./dashboard'),
+  'Transactions': require('es6-promise-loader!./pages/transactions'),
+  'Transaction': require('es6-promise-loader!./pages/transaction'),
+  'Auth': require('es6-promise-loader!./pages/auth'),
+  'Dashboard': require('es6-promise-loader!./pages/dashboard'),
 };
 
 

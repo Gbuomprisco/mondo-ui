@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { XHttp } from '../../providers/xhttp.provider';
-import { AccountsProvider } from '../../providers/accounts.provider';
+import { XHttp } from './xhttp.provider';
+import { AccountsProvider } from './accounts.provider';
 import { Observable } from 'rxjs/Rx';
-
 
 @Injectable()
 export class TransactionsProvider {

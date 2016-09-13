@@ -1,4 +1,4 @@
-import { AccountsProvider } from '../common/providers/accounts.provider';
+import { AccountsProvider } from '../../common/providers/accounts.provider';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -8,7 +8,7 @@ export class AccountsResolver implements Resolve<any> {
     constructor(private accountsProvider: AccountsProvider) {}
 
     public resolve(): Observable<any> {
-        return Observable.fromPromise(new Promise(resolve => {
+        return Observable.fromPromise(new Promise(resolvePromise => {
             this.accountsProvider
                 .getAccounts()
                 .subscribe(accounts => {
@@ -16,7 +16,7 @@ export class AccountsResolver implements Resolve<any> {
                     this.accountsProvider.xHttp.cache.put('accounts', accounts);
                     localStorage.setItem('accounts', JSON.stringify(accounts));
 
-                    resolve();
+                    resolvePromise();
                 });
         }));
     }

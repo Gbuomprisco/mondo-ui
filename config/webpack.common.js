@@ -191,7 +191,11 @@ module.exports = function(options) {
         {
           test: /\.(jpg|png|gif)$/,
           loader: 'file'
-        }
+        },
+          {
+              test:   /\.scss$/,
+              loader: "style-loader!css-loader!sass-loader!postcss-loader"
+          }
       ],
 
       postLoaders: [
