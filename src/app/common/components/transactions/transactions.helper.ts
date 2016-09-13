@@ -21,11 +21,14 @@ export class TransactionsHelper {
                 const isWithinRange = new Date(transaction.created).getTime() > lastWeek;
                 return isWithinRange && !transaction.is_load;
             })
-            .map(transaction => transaction.amount)
-            .reduce((acc, current) => {
-                return acc + current;
-            });
+            .map(transaction => transaction.amount);
 
-        return result / 100;
+        if (result.length) {
+            return result.reduce((acc, current) => {
+                return acc + current;
+            }) / 100;
+        }
+
+        return 0;
     }
 }

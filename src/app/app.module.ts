@@ -1,14 +1,12 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 import { LoggedInGuard, AccountsResolver } from './pages/auth';
 import { AccountsProvider, TransactionsProvider, XHttp, UserProvider } from './common/providers';
-
-import { AngularMaterialModule } from './angular-material.module';
 
 const COMMON_PROVIDERS = [
     TransactionsProvider,
@@ -55,10 +53,10 @@ type StoreType = {
     imports: [ // import Angular's modules
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         RouterModule.forRoot(ROUTES, {useHash: false}),
-        PagesModule,
-        AngularMaterialModule
+        PagesModule
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,

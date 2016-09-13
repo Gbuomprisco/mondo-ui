@@ -22,15 +22,13 @@
                     </a>
                 </div>
 
-                <div class="col-md-1">
-                    <md-toolbar class="end-icon">
-                        <button md-icon-button [md-menu-trigger-for]="menu">
-                            <md-icon>menu</md-icon>
-                        </button>
-                    </md-toolbar>
+                <div class="col-md-1 main-menu">
+                    <button md-icon-button [md-menu-trigger-for]="menu">
+                        <md-icon>menu</md-icon>
+                    </button>
 
-                    <md-menu x-position="before" #menu="mdMenu" class="before">
-                        <button md-menu-item>
+                    <md-menu #menu="mdMenu" x-position="before" y-position="below">
+                        <button md-menu-item (click)="logout()">
                             Logout
                         </button>
                     </md-menu>
