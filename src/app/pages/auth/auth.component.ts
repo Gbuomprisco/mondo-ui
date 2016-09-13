@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MdButton } from '@angular2-material/button';
-import { DomSanitizationService, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Http, Headers } from '@angular/http';
 import { UserProvider } from '../common/providers/user.provider';
-import { AccountsProvider } from '../common/providers/accounts.provider';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
     selector: 'auth',
-    directives: [ MdButton ],
     templateUrl: './auth.template.html',
     styles: [ `
       :host {
@@ -36,8 +33,7 @@ export class Auth {
     constructor(private router: Router,
                 private http: Http,
                 private user: UserProvider,
-                private accounts: AccountsProvider,
-                private sanitizer: DomSanitizationService) {
+                private sanitizer: DomSanitizer) {
     }
 
     public ngOnInit() {
@@ -49,7 +45,7 @@ export class Auth {
             return;
         }
 
-        this.router.routerState.queryParams.subscribe(params => {
+        this.router.routerState.root.queryParams.subscribe(params => {
             const code: string = params[ 'code' ],
                 state: string = params[ 'state' ];
 

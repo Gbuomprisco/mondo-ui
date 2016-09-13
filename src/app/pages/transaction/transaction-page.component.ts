@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { TransactionsProvider } from '../common/components/transactions/transactions.provider';
 
 @Component({
   selector: 'transactions-page',
-  providers: [ TransactionsProvider ],
   templateUrl: './transaction-page.template.html'
 })
 export class TransactionPage {
